@@ -10,13 +10,13 @@
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutAling.xs="none" fxLayoutAlign="space-between center">
             <mat-form-field appearance="outline">
-                <mat-select formControlName="symbol1" (selectionChange)="change(symbol1, symbol2, number1, 'number2')">
+                <mat-select formControlName="symbol1" (selectionChange)="change()">
                     <mat-option *ngFor="let symbol of symbols" [value]="symbol">{{symbol}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
-                <input matInput formControlName="number1" type="number" (keyup)="change(symbol1, symbol2, number1, 'number2')">
+                <input matInput formControlName="number1" type="number" (keyup)="setNumber2()">
             </mat-form-field>
         </div>
 
@@ -29,13 +29,13 @@
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutAling.xs="none" fxLayoutAlign="space-between center">
             <mat-form-field appearance="outline">
-                <mat-select formControlName="symbol2" (selectionChange)="change(symbol1, symbol2, number1, 'number2')">
+                <mat-select formControlName="symbol2" (selectionChange)="change()">
                     <mat-option *ngFor="let symbol of symbols" [value]="symbol">{{symbol}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
-                <input matInput formControlName="number2" type="number" (keyup)="change(symbol2, symbol1, number2, 'number1')">
+                <input matInput formControlName="number2" type="number" (keyup)="setNumber1()">
             </mat-form-field>
         </div>
 

@@ -10,18 +10,17 @@ import { MoneyExchangeService } from '../../services/money-exchange.service';
 export class PanelComponent implements OnInit {
 
 
- changeForm:FormGroup;
 
+  conversionRate:number=0;
+
+ changeForm:FormGroup;
   symbols:string[]=[];
 
   constructor(private _exchange:MoneyExchangeService, private fb:FormBuilder) {
-
     this.createForm();
-
-    this._exchange.getAllCurrencies().subscribe((data:any)=>{
-      this.symbols=Object.keys(data);
-    });
-
+    this.getSymbols();
+    this.change();
+ /*    this.changeDetection() */
 
 
   }
@@ -37,44 +36,79 @@ export class PanelComponent implements OnInit {
     return this.changeForm.get('symbol2')?.value;
    }
 
-   get number1(){
-    return this.changeForm.get('number1')?.value;
+  get number1(){
+     return this.changeForm.get('number1')?.value;
    }
 
-   get number2(){
+  get number2(){
     return this.changeForm.get('number2')?.value;
-   }
+  }
 
+
+
+   getSymbols(){
+    this._exchange.getAllCurrencies().subscribe((data:any)=>{
+      this.symbols=Object.keys(data);
+    });
+   }
 
 
    createForm(){
     this.changeForm=this.fb.group({
       symbol1:['USD', Validators.required],
       symbol2:['EUR', Validators.required],
-      number1:[0, Validators.required],
+      number1:[1, Validators.required],
       number2:[0, Validators.required],
     })
    }
 
 
-  change(from:string, to:string, amount:number, assign:string){
-
-    if(amount && amount>=0){
-      this._exchange.getExchangeAmount(from,to,amount).subscribe((data:number)=>{
-      this.changeForm.get(assign)?.setValue(data.toFixed(2));
-      })
-    }else{
-      this.changeForm.get(assign)?.setValue(0);
-    }
-
+  change(){
+    this._exchange.getExchangeAmount(this.symbol1, this.symbol2).subscribe((data:number)=>{
+      this.conversionRate=data;
+      console.log(data);
+      this.changeForm.get('number2')?.setValue(this.number1*this.conversionRate);
+    })
   }
+
+
 
   swap(){
     let tempSymbol1=this.symbol1;
     this.changeForm.get('symbol1')?.setValue(this.symbol2);
     this.changeForm.get('symbol2')?.setValue(tempSymbol1);
-    this.change(this.symbol1, this.symbol2, this.number1, 'number2')
+    this.change()
   }
+
+
+  setNumber1(){
+    if(this.number2>=0 && this.number2){
+      this.changeForm.get('number1')?.setValue((this.number2/this.conversionRate).toFixed(2));
+    }else{
+      this.changeForm.get('number1')?.setValue(0);
+    }
+
+  }
+
+
+  setNumber2(){
+    if(this.number1>=0 && this.number1){
+      this.changeForm.get('number2')?.setValue((this.number1*this.conversionRate).toFixed(2));
+    }else{
+      this.changeForm.get('number2')?.setValue(0);
+    }
+
+    }
+
+
+/*   changeDetection(){
+    this.changeForm.get('number1')?.valueChanges
+    .subscribe((data)=>{
+      this.changeForm.get('number2')?.setValue(this.number1*this.conversionRate);
+    })
+  }
+ */
+
 
 
 

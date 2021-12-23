@@ -29,11 +29,10 @@ export class MoneyExchangeService {
    }
 
 
-   getExchangeAmount(from:string, to:string, ammount:number){
-
-    return this.http.get(`${baseUrl2}${apiKey2}/pair/${from}/${to}/${ammount}`).pipe(
+   getExchangeAmount(from:string, to:string){
+    return this.http.get(`${baseUrl2}${apiKey2}/pair/${from}/${to}`).pipe(
       map(
-        (data:any)=>data.conversion_result
+        (data:any)=>data.conversion_rate
       )
     )
 
