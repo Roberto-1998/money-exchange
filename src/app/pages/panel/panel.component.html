@@ -1,5 +1,38 @@
-<ul>
-    <li *ngFor="let symbol of symbols">
-        {{symbol}}
-    </li>
-</ul>
+<section class="main-content">
+
+    <img src="../../../assets/img/1.png">
+
+    <h1>Exchange Rate Calculator</h1>
+
+    <p>Choose the currency and the amounts to get the exchange rate </p>
+
+    <form autocomplete="off" [formGroup]="changeForm">
+
+        <mat-form-field appearance="fill">
+            <mat-select formControlName="symbol1" (selectionChange)="change(symbol1, symbol2, number1, 'number2')">
+                <mat-option *ngFor="let symbol of symbols" [value]="symbol">{{symbol}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <input matInput formControlName="number1" type="number" (keyup)="change(symbol1, symbol2, number1, 'number2')">
+        </mat-form-field>
+
+        <button type="button" mat-flat-button color="primary" (click)="swap()">Swap</button>
+
+        <p>{{number1}} {{symbol1}} = {{number2}} {{symbol2}}</p>
+
+        <mat-form-field appearance="fill">
+            <mat-select formControlName="symbol2" (selectionChange)="change(symbol1, symbol2, number1, 'number2')">
+                <mat-option *ngFor="let symbol of symbols" [value]="symbol">{{symbol}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <input matInput formControlName="number2" type="number" (keyup)="change(symbol2, symbol1, number2, 'number1')">
+        </mat-form-field>
+
+
+    </form>
+
+</section>

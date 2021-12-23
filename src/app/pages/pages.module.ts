@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PanelComponent } from './panel/panel.component';
 import { MaterialModule } from '../material/material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { MaterialModule } from '../material/material/material.module';
   imports: [
     CommonModule,
     PagesRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   exports:[
     PanelComponent
