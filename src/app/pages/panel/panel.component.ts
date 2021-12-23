@@ -20,9 +20,6 @@ export class PanelComponent implements OnInit {
     this.createForm();
     this.getSymbols();
     this.change();
- /*    this.changeDetection() */
-
-
   }
 
   ngOnInit(): void {
@@ -66,8 +63,7 @@ export class PanelComponent implements OnInit {
   change(){
     this._exchange.getExchangeAmount(this.symbol1, this.symbol2).subscribe((data:number)=>{
       this.conversionRate=data;
-      console.log(data);
-      this.changeForm.get('number2')?.setValue(this.number1*this.conversionRate);
+      this.changeForm.get('number2')?.setValue((this.number1*this.conversionRate).toFixed(2));
     })
   }
 
@@ -99,21 +95,4 @@ export class PanelComponent implements OnInit {
     }
 
     }
-
-
-/*   changeDetection(){
-    this.changeForm.get('number1')?.valueChanges
-    .subscribe((data)=>{
-      this.changeForm.get('number2')?.setValue(this.number1*this.conversionRate);
-    })
-  }
- */
-
-
-
-
-
-
-
-
 }

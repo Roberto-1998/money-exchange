@@ -24,7 +24,7 @@
         <div fxLayout="row" fxLayout.xs="column" fxLayoutAling.xs="none" fxLayoutAlign="space-between center">
             <button type="button" mat-flat-button (click)="swap()">Swap</button>
 
-            <p>{{number1}} {{symbol1}} = {{number2}} {{symbol2}}</p>
+            <p>{{number1}} {{symbol1}} = {{(number1*conversionRate).toFixed(6)}} {{symbol2}}</p>
         </div>
 
         <div fxLayout="row" fxLayout.xs="column" fxLayoutAling.xs="none" fxLayoutAlign="space-between center">
