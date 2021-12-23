@@ -61,7 +61,7 @@ export class PanelComponent implements OnInit {
 
     if(amount && amount>=0){
       this._exchange.getExchangeAmount(from,to,amount).subscribe((data:number)=>{
-      this.changeForm.get(assign)?.setValue(data);
+      this.changeForm.get(assign)?.setValue(data.toFixed(2));
       })
     }else{
       this.changeForm.get(assign)?.setValue(0);
