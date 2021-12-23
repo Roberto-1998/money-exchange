@@ -4,11 +4,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs';
 
 
-const baseUrl1=environment.baseUrl1;
-const apiKey1=environment.apiKey1;
+const baseUrl=environment.baseUrl;
+const apiKey=environment.apiKey;
 
-const apiKey2=environment.apiKey2;
-const baseUrl2=environment.baseUrl2;
+
 
 
 @Injectable({
@@ -23,14 +22,16 @@ export class MoneyExchangeService {
    }
 
    getAllCurrencies(){
-     return this.http.get(`${baseUrl1}symbols?access_key=${apiKey1}`).pipe(
-       map((data:any)=>data.symbols)
-     )
+    return this.http.get(`${baseUrl}${apiKey}/codes`).pipe(
+      map(
+       ( data:any)=>data.supported_codes
+      )
+    )
    }
 
 
    getExchangeAmount(from:string, to:string){
-    return this.http.get(`${baseUrl2}${apiKey2}/pair/${from}/${to}`).pipe(
+    return this.http.get(`${baseUrl}${apiKey}/pair/${from}/${to}`).pipe(
       map(
         (data:any)=>data.conversion_rate
       )

@@ -4,10 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl1:'http://api.exchangeratesapi.io/v1/',
-  apiKey1:'29a8050d6106731f43b39c54cde752ce',
-  baseUrl2:'https://v6.exchangerate-api.com/v6/',
-  apiKey2:'e9311cc143b83c3dce55e64b'
+  baseUrl:'https://v6.exchangerate-api.com/v6/',
+  apiKey:'e9311cc143b83c3dce55e64b'
 
 };
 

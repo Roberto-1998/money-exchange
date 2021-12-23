@@ -44,9 +44,13 @@ export class PanelComponent implements OnInit {
 
 
    getSymbols(){
-    this._exchange.getAllCurrencies().subscribe((data:any)=>{
-      this.symbols=Object.keys(data);
+    this._exchange.getAllCurrencies().subscribe((data:string[])=>{
+      data.forEach((data)=>{
+        this.symbols.push(data[0]);
+      })
     });
+
+
    }
 
 
@@ -93,6 +97,5 @@ export class PanelComponent implements OnInit {
     }else{
       this.changeForm.get('number2')?.setValue(0);
     }
-
     }
 }
