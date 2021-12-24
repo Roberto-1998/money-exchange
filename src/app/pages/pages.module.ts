@@ -19,8 +19,6 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     ReactiveFormsModule,
     FlexLayoutModule
   ],
-  exports:[
-    PanelComponent
-  ]
+
 })
 export class PagesModule { }
