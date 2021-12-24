@@ -28,30 +28,34 @@
     font-weight: bold;
 }
 
-form {
+.main-content form {
     margin-top: 20px;
     width: 100%;
 }
 
-form div {
+.main-content form div {
     width: 100%;
 }
 
-form mat-form-field:first-child {
+.main-content form div:nth-child(3) {
+    margin-top: 30px;
+}
+
+.main-content form mat-form-field:first-child {
     width: 90px !important;
     font-weight: bold;
 }
 
-form mat-form-field:nth-child(2) {
+.main-content form mat-form-field:nth-child(2) {
     width: 120px !important;
 }
 
-form mat-form-field input {
-    font-size: 1.5rem;
+.main-content form mat-form-field input {
+    font-size: 1.1rem;
     font-weight: normal;
 }
 
-button {
+.main-content form button {
     background-color: #53b39f;
     color: white;
     margin: 30px 0 0 0;
@@ -67,11 +71,17 @@ button {
 }
 
 @media (min-width:600px) {
-    form div {
+    .main-content form div {
         width: 50%;
         margin: 10px;
     }
-    button {
+    .main-content form div:nth-child(3) {
+        margin-top: 0px;
+    }
+    .main-content form mat-form-field input {
+        font-size: 1.5rem;
+    }
+    .main-content form button {
         margin: 0;
     }
     .main-content h1 {
@@ -86,7 +96,7 @@ button {
 }
 
 @media (min-width:900px) {
-    form div {
+    .main-content form div {
         width: 40%;
     }
 }
